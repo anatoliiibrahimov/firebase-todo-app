@@ -22,19 +22,20 @@
 </button>
 
 <div>
-  <button (click)="facebookLogin()" *ngIf="!(user | async)?.uid">
-  Login with Facebook
-</button>
+  <a class="btn btn-success" (click)="facebookLogin()" *ngIf="!(user | async)?.uid">
+    Login with Facebook
+  </a>
   <br>
-  <button (click)="googleLogin()" *ngIf="!(user | async)?.uid">
-  Login with Google
-</button>
+  <a class="btn btn-success" (click)="facebookLogin()" *ngIf="!(user | async)?.uid">
+    Login with Google
+  </a>
   <br>
-  <button (click)="logout()" *ngIf="(user | async)?.uid">Logout</button>
+  <button (click)="logout()" *ngIf="(user | async)?.uid">
+    Logout
+  </button>
   <br><br>
 </div>
-<div *ngIf="(user | async)?.uid">
-  <img src="{{(user | async)?.photoURL}}" style="width:30px;height:30px;">
-  <br> Email: {{(user | async)?.email}}
-  <br> Name: {{(user | async)?.displayName}}
-</div>
+
+<main class="column is-8">
+  <router-outlet></router-outlet>
+</main>

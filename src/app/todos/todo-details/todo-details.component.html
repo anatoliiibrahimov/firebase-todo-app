@@ -1,0 +1,13 @@
+<h3 [ngClass]="{ 'strike-out': !todo.active }">
+  {{ todo.title }}
+</h3>
+
+<div class>
+  Todo is Active?: {{ todo.active }}<br>
+</div>
+
+<div class>
+  <span *ngIf='todo.active' (click)='updateActive(false)'>Mark As Complete</span>
+  <span *ngIf='!todo.active' (click)='updateActive(true)'>Mark As Incomplete</span>
+  <span (click)='deleteTodo()'>Delete</span>
+</div>

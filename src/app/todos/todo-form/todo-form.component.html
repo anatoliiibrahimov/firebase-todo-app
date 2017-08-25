@@ -1,0 +1,10 @@
+<h3>New Todo Form</h3>
+
+    <label class="label">Name: </label>
+
+    <input placeholder="Todo Title" class="input"
+    [(ngModel)]="todo.title"
+    required minlength="2" maxlength="23"
+    #title='ngModel' autofocus>
+
+    <button class="btn btn-success" (click)='createTodo()' [disabled]="!title.valid">Create</button>
