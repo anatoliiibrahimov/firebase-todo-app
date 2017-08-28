@@ -4,21 +4,28 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 
+import { AuthService } from '../../auth.service'
 import { Todo } from './todo';
+
 @Injectable()
 export class TodoService {
   private basePath: string = '/todos';
   todos: FirebaseListObservable<Todo[]> = null;
   todo: FirebaseObjectObservable<Todo> = null;
+  userId: string;
   constructor(
-  	private afa: AngularFireAuth,
-    private db: AngularFireDatabase
-  ) { }
+  	private firebaseAuth: AngularFireAuth,
+    private db: AngularFireDatabase,
+    auth: AuthService
+  ) {
+    this.firebaseAuth.authState.subscribe(user => {
+      if(user) this.userId = user.uid
+    })
+  }
 
   getTodosList(query={}): FirebaseListObservable<Todo[]> {
-  	this.todos = this.db.list(this.basePath, {
-    	query: query
-  	});
+    if (!this.userId) return;
+  	this.todos = this.db.list(`todos/${this.userId}`);
   	return this.todos
 	}
 	
