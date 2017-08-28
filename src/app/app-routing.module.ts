@@ -3,8 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 
 import { TodosListComponent } from './todos/todos-list/todos-list.component';
+import { UserLoginComponent } from './user/user-login/user-login.component';
+import { UserSignupComponent } from './user/user-signup/user-signup.component';
 
 const routes: Routes = [
+  { path: 'login', component: UserLoginComponent, },
+  { path: 'signup', component: UserSignupComponent, },
   { path: 'todos', component: TodosListComponent, canActivate: [AuthGuard]},
 ];
 

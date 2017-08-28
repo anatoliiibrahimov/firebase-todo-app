@@ -10,8 +10,10 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from './auth.service';
 import { FormsModule } from '@angular/forms';
 import { TodoService } from './todos/shared/todo.service'
-import { TodoModule }   from './todos/shared/todo.module';
+import { TodoModule } from './todos/shared/todo.module';
+import { UserModule } from './user/shared/user.module';
 import { AppComponent } from './app.component';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { AppComponent } from './app.component';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    TodoModule
+    TodoModule,
+    UserModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

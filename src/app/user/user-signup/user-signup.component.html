@@ -1,0 +1,8 @@
+<div *ngIf="!(authService.user | async)">
+  <input type="text" [(ngModel)]="email" placeholder="email">
+  <input type="password" [(ngModel)]="password" placeholder="password">
+
+  <button (click)="signup()" class="btn btn-primary" [disabled]="!email || !password">
+    Signup
+  </button>
+</div>
