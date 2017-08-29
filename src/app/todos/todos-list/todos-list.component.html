@@ -1,11 +1,10 @@
 <h1>Todos</h1>
-
+<div class="jumbotron">
 <div *ngFor="let todo of todos | async">
   <todo-details [todo]='todo'></todo-details>
+  <button type="button" class="btn btn-success" >Add to a group</button>
 </div>
 
-<button type="button" class="btn btn-danger" (click)='deleteTodos()'>Delete list</button>
-
 <hr>
-
+</div>
 <todo-form></todo-form>

@@ -9,5 +9,5 @@
 <div class>
   <span *ngIf='todo.active' (click)='updateActive(false)'>Mark As Complete</span>
   <span *ngIf='!todo.active' (click)='updateActive(true)'>Mark As Incomplete</span>
-  <span (click)='deleteTodo()'>Delete</span>
+  <button class="btn btn-danger" (click)='deleteTodo()'>Delete</button>
 </div>

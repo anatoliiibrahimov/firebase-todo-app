@@ -13,11 +13,14 @@ import { TodoService } from './todos/shared/todo.service'
 import { TodoModule } from './todos/shared/todo.module';
 import { UserModule } from './user/shared/user.module';
 import { AppComponent } from './app.component';
-
+import { HomeComponent } from './home/home.component';
+import { TodoGroupComponent } from './todo-group/todo-group.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
+    TodoGroupComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,4 +4,5 @@ export class Todo {
   body: string;
   timeStamp: Date;
   active: boolean = true;
+  userId: string;
 }

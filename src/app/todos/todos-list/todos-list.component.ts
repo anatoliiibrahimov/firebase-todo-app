@@ -14,7 +14,4 @@ export class TodosListComponent implements OnInit {
   ngOnInit() {
     this.todos = this.todoSvc.getTodosList({limitToLast: 5})
   }
-  deleteTodos() {
-    this.todoSvc.deleteAll()
-  }
 }

@@ -26,8 +26,8 @@ export class AuthService {
     this.firebaseAuth
       .auth
       .createUserWithEmailAndPassword(email, password)
-      .then(value => {
-        console.log('Success!', value);
+      .then((data) => {
+        this.router.navigate(['/todos']);
       })
       .catch(err => {
         console.log('Something went wrong:',err.message);
@@ -38,8 +38,8 @@ export class AuthService {
     this.firebaseAuth
       .auth
       .signInWithEmailAndPassword(email, password)
-      .then(value => {
-        console.log('Nice, it worked!');
+      .then((data) => {
+        this.router.navigate(['/todos']);
       })
       .catch(err => {
         console.log('Something went wrong:',err.message);
@@ -49,13 +49,19 @@ export class AuthService {
   googleLogin() {
     this.firebaseAuth
     	.auth
-    	.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    	.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .then((data) => {
+        this.router.navigate(['/todos']);
+      })
   }
 
   facebookLogin() {
     this.firebaseAuth
     	.auth
-    	.signInWithPopup(new firebase.auth.FacebookAuthProvider());
+    	.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+      .then((data) => {
+        this.router.navigate(['/todos']);
+      })
   }
 
   logout() {

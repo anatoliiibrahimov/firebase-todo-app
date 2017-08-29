@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {  FirebaseListObservable, FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2/database';
+import { FirebaseListObservable, FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -36,10 +36,11 @@ export class TodoService {
   }
 
   createTodo(todo: Todo): void  {
-     this.todos.push(todo)
+    todo.userId = this.userId
+    this.todos.push(todo)
        .catch(error => this.handleError(error))
-   }
- 
+  }
+
   updateTodo(key: string, value: any): void {
     this.todos.update(key, value)
       .catch(error => this.handleError(error))
@@ -47,11 +48,6 @@ export class TodoService {
  
   deleteTodo(key: string): void {
     this.todos.remove(key)
-      .catch(error => this.handleError(error))
- 	}
- 
-  deleteAll(): void {
-    this.todos.remove()
       .catch(error => this.handleError(error))
  	}
  

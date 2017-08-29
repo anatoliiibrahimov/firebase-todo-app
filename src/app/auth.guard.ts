@@ -10,7 +10,6 @@ import 'rxjs/add/operator/take';
 export class AuthGuard implements CanActivate {
 	constructor(private firebaseAuth: AngularFireAuth, private router: Router) {}
 
-
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | boolean {
