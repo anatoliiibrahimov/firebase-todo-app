@@ -14,13 +14,12 @@ import { TodoModule } from './todos/shared/todo.module';
 import { UserModule } from './user/shared/user.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { TodoGroupComponent } from './todo-group/todo-group.component';
+import { GroupModule } from './groups/shared/group.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    TodoGroupComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +29,8 @@ import { TodoGroupComponent } from './todo-group/todo-group.component';
     HttpModule,
     AppRoutingModule,
     TodoModule,
-    UserModule
+    UserModule,
+    GroupModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

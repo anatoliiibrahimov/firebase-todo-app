@@ -1,0 +1,5 @@
+<input placeholder="Group Title" class="form-control"
+[(ngModel)]="group.title"
+required minlength="2" maxlength="23"
+#title='ngModel' autofocus>
+<button class="btn btn-primary" (click)='createGroup()'>Create</button>
