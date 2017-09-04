@@ -32,12 +32,13 @@ export class GroupService {
     return this.groups
 	}
 
-	getGroup(key: string): FirebaseObjectObservable<Group> {
+	getGroup(userId, id): FirebaseObjectObservable<Group> {
     if (!this.userId) return;
-    const groupPath =  `${this.basePath}/${key}`; 
-    this.router.navigate([groupPath]);
-    console.log(groupPath);
-    this.group = this.db.object(groupPath);
+    // const groupPath =  `${this.basePath}/${this.userId}/${key}`; 
+    this.group = this.db.object('/groups/'+ this.userId +'/'+ id) as FirebaseObjectObservable<Group>;
+    this.router.navigate([this.group]);
+    // console.log(groupPath);
+    // this.group = this.db.object(groupPath);
     console.log(this.group);
     return this.group
   }

@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'signup', component: UserSignupComponent, },
   { path: 'todos', component: TodosListComponent, canActivate: [AuthGuard]},
   { path: 'groups', component: GroupsListComponent, canActivate: [AuthGuard]},
-  { path: 'groups/:key', component: GroupDetailComponent, canActivate: [AuthGuard]}
+  { path: 'groups/:id', component: GroupDetailComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

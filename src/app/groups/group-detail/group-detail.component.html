@@ -1,4 +1,7 @@
-<h5>{{ group?.title || 'missing title' }}</h5>
-{{ group?.timeStamp | date: 'medium' }}
-<span (click)='deleteGroup()'>Delete</span>
-<span (click)='getGroup()'>Show</span>
+<div *ngIf="group">
+      <h2>{{group.title}} details!</h2>
+      <div>
+        <label>title: </label>
+        <input [(ngModel)]="group.title" placeholder="title"/>
+      </div>
+    </div>
