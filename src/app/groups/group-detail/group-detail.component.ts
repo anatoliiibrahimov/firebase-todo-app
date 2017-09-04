@@ -14,6 +14,15 @@ export class GroupDetailComponent implements OnInit {
   ngOnInit() {
   }
 
+  getGroup() {
+    this.groupSvc.getGroup(this.group.title).subscribe(data => {
+      
+      this.group = data;
+      console.log(data);
+    })
+    console.log(this.group)
+  }
+
   updateTimeStamp() {
     let date = new Date().getTime()
     this.groupSvc.updateGroup(this.group.$key, { timeStamp: date })
