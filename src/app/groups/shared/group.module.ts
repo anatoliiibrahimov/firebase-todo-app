@@ -16,8 +16,8 @@ import { GroupDetailComponent } from '../group-detail/group-detail.component';
   ],
   declarations: [
   	GroupsListComponent,
-	GroupFormComponent,
-	GroupDetailComponent
+	  GroupFormComponent,
+	  GroupDetailComponent
   ],
   providers: [
     GroupService

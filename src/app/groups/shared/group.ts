@@ -4,4 +4,5 @@ export class Group {
 	body: string;
 	timeStamp: number;
 	userId: string;
+	id: string;
 }

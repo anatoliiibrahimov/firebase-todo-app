@@ -7,6 +7,7 @@ import { GroupsListComponent } from './groups/groups-list/groups-list.component'
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserSignupComponent } from './user/user-signup/user-signup.component';
 import { HomeComponent } from './home/home.component';
+import { GroupDetailComponent } from './groups/group-detail/group-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'login', component: UserLoginComponent, },
   { path: 'signup', component: UserSignupComponent, },
   { path: 'todos', component: TodosListComponent, canActivate: [AuthGuard]},
-  { path: 'groups', component: GroupsListComponent, canActivate: [AuthGuard]}
+  { path: 'groups', component: GroupsListComponent, canActivate: [AuthGuard]},
+  { path: 'groups/:id', component: GroupDetailComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
