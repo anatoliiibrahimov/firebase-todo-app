@@ -2,10 +2,8 @@
 [class.selected]="group === selectedGroup"
 (click)='getGroup(group)'>
 {{group.title}}
-  <!-- <h5>{{ group?.title || 'missing title' }}</h5> > -->
-  <!-- <group-detail [group]='group'></group-detail> -->
-  <!-- [class.selected]="group === selectedGroup" -->
-	{{ group?.timeStamp | date: 'medium' }}
+{{ group?.timeStamp | date: 'medium' }}
 </div>
+
 <group-detail [group]="selectedGroup"></group-detail>
 <group-form></group-form>

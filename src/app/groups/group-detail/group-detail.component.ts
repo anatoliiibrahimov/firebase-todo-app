@@ -18,29 +18,24 @@ export class GroupDetailComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    this.groupSvc.getGroup(this.group.id, this.id).subscribe(data => {
+    this.groupSvc.getGroup(this.group, this.id).subscribe(data => {
       
       this.group = data;
       console.log(data);
     })
   }
 
-  // getGroup() {
-    
-  //   console.log(this.group.title)
-  // }
-
-  // updateTimeStamp() {
-  //   let date = new Date().getTime()
-  //   this.groupSvc.updateGroup(this.group.$key, { timeStamp: date })
-  // }
+  updateTimeStamp() {
+    let date = new Date().getTime()
+    this.groupSvc.updateGroup(this.group.$key, { timeStamp: date })
+  }
   
-  // updateActive(value: boolean) {
-  //   this.groupSvc.updateGroup(this.group.$key, { active: value })
-  // }
+  updateActive(value: boolean) {
+    this.groupSvc.updateGroup(this.group.$key, { active: value })
+  }
 
-  // deleteGroup() {
-  //   this.groupSvc.deleteGroup(this.group.$key)
-  // }
+  deleteGroup() {
+    this.groupSvc.deleteGroup(this.group.$key)
+  }
 
 }

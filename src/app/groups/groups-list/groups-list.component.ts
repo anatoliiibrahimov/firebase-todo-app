@@ -21,7 +21,7 @@ export class GroupsListComponent implements OnInit {
   	this.groups = this.groupSvc.getGroupsList({limitToLast: 5})
   }
 
-  getGroup(group: Group) {
+  getGroup(group) {
   	this.selectedGroup = group;
   }
 }

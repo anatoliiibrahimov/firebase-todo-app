@@ -13,7 +13,6 @@ export class GroupService {
   group: FirebaseObjectObservable<Group> = null;
   userId: string;
 
-
   constructor(
   	private firebaseAuth: AngularFireAuth,
     private db: AngularFireDatabase,
@@ -36,7 +35,7 @@ export class GroupService {
     if (!this.userId) return;
     // const groupPath =  `${this.basePath}/${this.userId}/${key}`; 
     this.group = this.db.object('/groups/'+ this.userId +'/'+ id) as FirebaseObjectObservable<Group>;
-    this.router.navigate([this.group]);
+    // this.router.navigate([this.group]);
     // console.log(groupPath);
     // this.group = this.db.object(groupPath);
     console.log(this.group);
