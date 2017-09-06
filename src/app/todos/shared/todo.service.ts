@@ -6,12 +6,15 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 import { AuthService } from '../../auth.service'
 import { Todo } from './todo';
+import { Group } from '../../groups/shared/group'
 
 @Injectable()
 export class TodoService {
   private basePath: string = '/todos';
   todos: FirebaseListObservable<Todo[]> = null;
   todo: FirebaseObjectObservable<Todo> = null;
+  groups: FirebaseListObservable<Group[]> = null;
+  group: FirebaseObjectObservable<Group> = null;
   userId: string;
   constructor(
   	private firebaseAuth: AngularFireAuth,
@@ -50,6 +53,12 @@ export class TodoService {
     this.todos.remove(key)
       .catch(error => this.handleError(error))
  	}
+
+  getGroupsList(query={}): FirebaseListObservable<Group[]> {
+    if (!this.userId) return;
+    this.groups = this.db.list(`groups/${this.userId}`);
+    return this.groups
+  }
  
   private handleError(error) {
     console.log(error)

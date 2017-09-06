@@ -18,7 +18,7 @@ import { TodoDetailsComponent } from '../todo-details/todo-details.component';
   declarations: [
     TodosListComponent,
     TodoFormComponent,
-    TodoDetailsComponent,
+    TodoDetailsComponent
   ],
   providers: [
     TodoService
