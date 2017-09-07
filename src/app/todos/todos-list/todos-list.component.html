@@ -2,10 +2,9 @@
 <div class="jumbotron">
 <div *ngFor="let todo of todos | async">
   <todo-details [todo]='todo'></todo-details>
-  <select [(ngModel)]="group" required>
-  	<option *ngFor="let group of groups | async" [value]="group.key" >{{group.title}}</option>
+  <select [(ngModel)]="group" required (click)="addToGroup(todo)">
+  	<option *ngFor="let group of groups | async" [value]="group.key" >Add to a group: {{group.title}}</option>
 	</select>
-  <button type="button" class="btn btn-success" >Add to a group</button>
 </div>
 </div>
 <todo-form></todo-form>

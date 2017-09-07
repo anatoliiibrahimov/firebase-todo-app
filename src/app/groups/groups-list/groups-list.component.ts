@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GroupService } from '../shared/group.service';
 import { Group } from '../shared/group';
-import { FirebaseListObservable } from 'angularfire2/database';
+import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Todo } from '../../todos/shared/todo';
 
 @Component({
   selector: 'groups-list',
@@ -12,7 +13,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class GroupsListComponent implements OnInit {
 	selectedGroup: Group;
 	public groups: FirebaseListObservable<Group[]>;
-
+  public todo: FirebaseObjectObservable<Todo>;
   constructor(private groupSvc: GroupService,
   				    private router: Router,
               private route: ActivatedRoute) { }
@@ -23,5 +24,10 @@ export class GroupsListComponent implements OnInit {
 
   getGroup(group) {
   	this.selectedGroup = group;
+  }
+
+  addToGroup(todo) {
+    const tets = this.groupSvc.addToGroup(this.todo);
+    console.log(tets)
   }
 }

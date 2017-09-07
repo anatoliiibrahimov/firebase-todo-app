@@ -59,6 +59,23 @@ export class TodoService {
     this.groups = this.db.list(`groups/${this.userId}`);
     return this.groups
   }
+
+  getGroup(): FirebaseObjectObservable<Group> {
+    if (!this.userId) return;
+    // const groupPath =  `${this.basePath}/${this.userId}/${key}`; 
+    this.group = this.db.object('/groups/'+ this.userId);
+    // this.router.navigate([this.group]);
+    // console.log(groupPath);
+    // this.group = this.db.object(groupPath);
+    console.log(this.group);
+    return this.group
+  }
+
+  addToGroup(todo: any) {
+    const list = this.db.list(`groups/${this.userId}`);
+    list.push(todo)
+    return list
+  }
  
   private handleError(error) {
     console.log(error)

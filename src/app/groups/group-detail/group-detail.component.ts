@@ -12,6 +12,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class GroupDetailComponent implements OnInit {
 	@Input() group: Group;
   id: any;
+  
   constructor(private groupSvc: GroupService,
               private router: Router,
               private route: ActivatedRoute) { }
@@ -19,7 +20,7 @@ export class GroupDetailComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.groupSvc.getGroup(this.group, this.id).subscribe(data => {
-      
+    
       this.group = data;
       console.log(data);
     })
@@ -37,5 +38,6 @@ export class GroupDetailComponent implements OnInit {
   deleteGroup() {
     this.groupSvc.deleteGroup(this.group.$key)
   }
+
 
 }

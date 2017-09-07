@@ -5,12 +5,15 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Group } from './group';
 import { AuthService } from '../../auth.service'
 import { Router } from '@angular/router';
+import { Todo } from '../../todos/shared/todo'
 
 @Injectable()
 export class GroupService {
 	private basePath: string = '/groups';
 	groups: FirebaseListObservable<Group[]> = null;
   group: FirebaseObjectObservable<Group> = null;
+  todos: FirebaseListObservable<Todo[]> = null;
+  todo: FirebaseObjectObservable<Todo> = null;
   userId: string;
 
   constructor(
@@ -34,7 +37,7 @@ export class GroupService {
 	getGroup(userId, id): FirebaseObjectObservable<Group> {
     if (!this.userId) return;
     // const groupPath =  `${this.basePath}/${this.userId}/${key}`; 
-    this.group = this.db.object('/groups/'+ this.userId) as FirebaseObjectObservable<Group>;
+    this.group = this.db.object('/groups/'+ this.userId);
     // this.router.navigate([this.group]);
     // console.log(groupPath);
     // this.group = this.db.object(groupPath);
@@ -56,6 +59,12 @@ export class GroupService {
   deleteGroup(key: string): void {
     this.groups.remove(key)
       .catch(error => this.handleError(error))
+  }
+
+  addToGroup(todo: any) {
+    const list = this.db.list(`groups/${this.userId}`);
+    list.push(todo)
+    return list
   }
 
   private handleError(error) {
