@@ -34,13 +34,9 @@ export class GroupService {
     return this.groups
 	}
 
-	getGroup(userId, id): FirebaseObjectObservable<Group> {
+	getGroup(userId): FirebaseObjectObservable<Group> {
     if (!this.userId) return;
-    // const groupPath =  `${this.basePath}/${this.userId}/${key}`; 
     this.group = this.db.object('/groups/'+ this.userId);
-    // this.router.navigate([this.group]);
-    // console.log(groupPath);
-    // this.group = this.db.object(groupPath);
     console.log(this.group);
     return this.group
   }
@@ -59,12 +55,6 @@ export class GroupService {
   deleteGroup(key: string): void {
     this.groups.remove(key)
       .catch(error => this.handleError(error))
-  }
-
-  addToGroup(todo: any) {
-    const list = this.db.list(`groups/${this.userId}`);
-    list.push(todo)
-    return list
   }
 
   private handleError(error) {

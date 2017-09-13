@@ -18,8 +18,7 @@ export class GroupDetailComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
-    this.groupSvc.getGroup(this.group, this.id).subscribe(data => {
+    this.groupSvc.getGroup(this.group).subscribe(data => {
     
       this.group = data;
       console.log(data);

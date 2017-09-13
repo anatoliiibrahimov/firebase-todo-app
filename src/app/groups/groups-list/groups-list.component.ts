@@ -26,8 +26,4 @@ export class GroupsListComponent implements OnInit {
   	this.selectedGroup = group;
   }
 
-  addToGroup(todo) {
-    const tets = this.groupSvc.addToGroup(this.todo);
-    console.log(tets)
-  }
 }

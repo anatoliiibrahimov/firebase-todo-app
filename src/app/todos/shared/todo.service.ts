@@ -28,7 +28,7 @@ export class TodoService {
 
   getTodosList(query={}): FirebaseListObservable<Todo[]> {
     if (!this.userId) return;
-  	this.todos = this.db.list(`todos/${this.userId}`);
+  	this.todos = this.db.list(`todos/${this.userId}`)
   	return this.todos
 	}
 	
@@ -60,21 +60,11 @@ export class TodoService {
     return this.groups
   }
 
-  getGroup(): FirebaseObjectObservable<Group> {
+  getGroup(todo: Todo): FirebaseObjectObservable<Group> {
     if (!this.userId) return;
-    // const groupPath =  `${this.basePath}/${this.userId}/${key}`; 
-    this.group = this.db.object('/groups/'+ this.userId);
-    // this.router.navigate([this.group]);
-    // console.log(groupPath);
-    // this.group = this.db.object(groupPath);
+    this.group = this.db.object('/groups/'+ this.userId+'/'+todo.groupKey);
     console.log(this.group);
     return this.group
-  }
-
-  addToGroup(todo: any) {
-    const list = this.db.list(`groups/${this.userId}`);
-    list.push(todo)
-    return list
   }
  
   private handleError(error) {

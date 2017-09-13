@@ -5,4 +5,5 @@ export class Todo {
   timeStamp: Date;
   active: boolean = true;
   userId: string;
+  groupKey: string;
 }

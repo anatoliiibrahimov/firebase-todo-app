@@ -1,6 +1,6 @@
 <div *ngFor="let group of groups | async" 
 [class.selected]="group === selectedGroup"
-(click)='getGroup(group); addToGroup(todo);'>
+(click)='getGroup(group)'>
 {{group.title}}
 {{ group?.timeStamp | date: 'medium' }}
 </div>

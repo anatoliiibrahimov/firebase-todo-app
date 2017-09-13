@@ -10,4 +10,8 @@
   <span *ngIf='todo.active' (click)='updateActive(false)'>Mark As Complete</span>
   <span *ngIf='!todo.active' (click)='updateActive(true)'>Mark As Incomplete</span>
   <button class="btn btn-danger" (click)='deleteTodo()'>Delete</button>
+
+  <select [(ngModel)]="group" required (ngModelChange)="addToGroup()">
+  	<option *ngFor="let group of groups | async" [ngValue]="group" >Add to a group: {{group.title}}</option>
+	</select>
 </div>

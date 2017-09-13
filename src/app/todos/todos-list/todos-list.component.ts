@@ -14,13 +14,14 @@ export class TodosListComponent implements OnInit {
   public todos: FirebaseListObservable<Todo[]>;
   public todo: FirebaseObjectObservable<Todo>;
   public groups: FirebaseListObservable<Group[]>;
+  public group: FirebaseObjectObservable<Group>;
   constructor(private todoSvc: TodoService) { }
   ngOnInit() {
     this.todos = this.todoSvc.getTodosList({limitToLast: 5})
     this.groups = this.todoSvc.getGroupsList({limitToLast: 5})
   }
-  addToGroup() {
-  	const test = this.todoSvc.addToGroup(this.todo);
-  	console.log(test);
+
+  getGroup(todo) {
+    return this.todoSvc.getGroup(todo)
   }
 }
