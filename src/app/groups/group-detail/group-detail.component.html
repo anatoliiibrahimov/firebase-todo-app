@@ -1,8 +1,15 @@
-<div *ngIf="group">
+<div *ngIf="group ">
       <h2>{{group.title}} details!</h2>
       <div>
         <label>title: </label>
         <input [(ngModel)]="group.title" placeholder="title"/>
         <button class="btn btn-primary" (click)='deleteGroup()'>Delete</button>
+        <button (click)='getGroup()'>Show todos</button>
       </div>
     </div>
+    <div *ngIf="todos ">
+    <div *ngFor="let todo of todos | async">
+      {{todo.title}}
+    </div>
+    </div>
+      

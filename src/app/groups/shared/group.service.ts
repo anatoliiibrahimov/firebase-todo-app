@@ -25,18 +25,22 @@ export class GroupService {
   	this.firebaseAuth.authState.subscribe(user => {
       if(user) this.userId = user.uid
       	this.groups = db.list(this.basePath);
-    })
+    })  
   }
 
   getGroupsList(query={}): FirebaseListObservable<Group[]> {
   	if (!this.userId) return;
-    this.groups = this.db.list(`groups/${this.userId}`);
+    this.groups = this.db.list(`groups/${this.userId}`, {
+      query: query
+    });
+    console.log(this.groups)
     return this.groups
+    
 	}
 
-	getGroup(userId): FirebaseObjectObservable<Group> {
+	getGroup(key: string): FirebaseObjectObservable<Group> {
     if (!this.userId) return;
-    this.group = this.db.object('/groups/'+ this.userId);
+    this.group = this.db.object(`groups/${this.userId}/${key}`);
     console.log(this.group);
     return this.group
   }
@@ -55,6 +59,12 @@ export class GroupService {
   deleteGroup(key: string): void {
     this.groups.remove(key)
       .catch(error => this.handleError(error))
+  }
+
+  getTodoList(query ={}): FirebaseListObservable<Todo[]> {
+    this.todos = this.db.list('/todos/' + this.userId ,  {query: query})
+    console.log(query)
+    return this.todos
   }
 
   private handleError(error) {

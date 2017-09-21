@@ -12,14 +12,15 @@ import { Todo } from '../../todos/shared/todo';
 })
 export class GroupsListComponent implements OnInit {
 	selectedGroup: Group;
-	public groups: FirebaseListObservable<Group[]>;
+  public groups: FirebaseListObservable<Group[]>;
+  public todos: FirebaseListObservable<Todo[]>;
   public todo: FirebaseObjectObservable<Todo>;
   constructor(private groupSvc: GroupService,
   				    private router: Router,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-  	this.groups = this.groupSvc.getGroupsList({limitToLast: 5})
+    this.groups = this.groupSvc.getGroupsList({limitToLast: 5})
   }
 
   getGroup(group) {
