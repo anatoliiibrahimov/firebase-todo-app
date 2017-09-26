@@ -88,6 +88,14 @@ export class GroupService {
     members.update(data)
   }
 
+  addToGroup(group_key: string, userId: string) {
+    const data = { [group_key]: true};
+    const groups = this.db.object(`users/${userId}/groups`);
+    
+    console.log(groups)
+    groups.update(data)
+  }
+
   getUser(group: Group): FirebaseObjectObservable<User>{
     this.user = this.db.object('/users/'+ this.userId+'/'+group.$key);
     console.log(this.user);

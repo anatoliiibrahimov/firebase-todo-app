@@ -8,7 +8,7 @@
           <button class="btn btn-primary" (click)='deleteGroup()'>Delete Group</button>
      </div>
 
-     <select [(ngModel)]="user" required (ngModelChange)="addToUser()">
+     <select [(ngModel)]="user" required (ngModelChange)="addToUser(); addToGroup()">
         <option *ngFor="let user of users | async" [ngValue]="user" >Add to a user: {{user.email}}</option>
       </select>
 </div>
