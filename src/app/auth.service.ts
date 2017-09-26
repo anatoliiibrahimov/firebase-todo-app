@@ -2,16 +2,23 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Router } from "@angular/router";
-
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
+import { User } from './user/shared/user';
 
 @Injectable()
 export class AuthService {
-	user: Observable<firebase.User>;
-
+	user: FirebaseObjectObservable<User>
+  users: FirebaseListObservable<User[]> = null;
   constructor(private firebaseAuth: AngularFireAuth,
-              private router:Router) { 
-  	this.user = firebaseAuth.authState;
+              private router:Router,
+              private db: AngularFireDatabase) { 
+                this.firebaseAuth.authState.subscribe((user) => {
+                  if (user != null) {
+                    this.user = db.object('users/' + user.uid);
+                  }
+                });
+               this.users = db.list('users/');
   }
 
   get authenticated(): boolean {
@@ -26,7 +33,9 @@ export class AuthService {
     this.firebaseAuth
       .auth
       .createUserWithEmailAndPassword(email, password)
-      .then((data) => {
+      .then((user) => {
+        this.db.list('users').push({email})
+        
         this.router.navigate(['/todos']);
       })
       .catch(err => {
@@ -38,7 +47,7 @@ export class AuthService {
     this.firebaseAuth
       .auth
       .signInWithEmailAndPassword(email, password)
-      .then((data) => {
+      .then((user) => {
         this.router.navigate(['/todos']);
       })
       .catch(err => {

@@ -6,6 +6,9 @@ import { Group } from './group';
 import { AuthService } from '../../auth.service'
 import { Router } from '@angular/router';
 import { Todo } from '../../todos/shared/todo'
+import { Observable } from 'rxjs/Observable';
+import { User } from '../../user/shared/user';
+import * as firebase from 'firebase/app';
 
 @Injectable()
 export class GroupService {
@@ -14,7 +17,10 @@ export class GroupService {
   group: FirebaseObjectObservable<Group> = null;
   todos: FirebaseListObservable<Todo[]> = null;
   todo: FirebaseObjectObservable<Todo> = null;
+  user: FirebaseObjectObservable<User> = null;
+  users: FirebaseListObservable<User[]> = null;
   userId: string;
+
 
   constructor(
   	private firebaseAuth: AngularFireAuth,
@@ -25,7 +31,7 @@ export class GroupService {
   	this.firebaseAuth.authState.subscribe(user => {
       if(user) this.userId = user.uid
       	this.groups = db.list(this.basePath);
-    })  
+    })
   }
 
   getGroupsList(query={}): FirebaseListObservable<Group[]> {
@@ -62,9 +68,30 @@ export class GroupService {
   }
 
   getTodoList(query ={}): FirebaseListObservable<Todo[]> {
+    if (!this.userId) return;
     this.todos = this.db.list('/todos/' + this.userId ,  {query: query})
     console.log(query)
     return this.todos
+  }
+
+  getUsersList(query={}): FirebaseListObservable<User[]>{
+    this.users = this.db.list('users/')
+    console.log(this.users)
+    return this.users
+  }
+
+  addToUser(member_key: string, key: string) {
+    const data = { [member_key]: true};
+    const members = this.db.object(`groups/${this.userId}/${key}/members`);
+    
+    console.log(members)
+    members.update(data)
+  }
+
+  getUser(group: Group): FirebaseObjectObservable<User>{
+    this.user = this.db.object('/users/'+ this.userId+'/'+group.$key);
+    console.log(this.user);
+    return this.user
   }
 
   private handleError(error) {

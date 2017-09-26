@@ -1,3 +1,4 @@
+import { Members } from './members'
 export class Group {
 	$key: string;
 	title: string;
@@ -5,4 +6,5 @@ export class Group {
 	timeStamp: number;
 	userId: string;
 	id: string;
+	members: Members;
 }

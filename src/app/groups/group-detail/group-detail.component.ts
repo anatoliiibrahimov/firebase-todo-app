@@ -5,6 +5,7 @@ import { FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/d
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Todo } from '../../todos/shared/todo';
 import { TodoService } from '../../todos/shared/todo.service';
+import { User } from '../../user/shared/user';
 
 @Component({
   selector: 'group-detail',
@@ -15,12 +16,15 @@ export class GroupDetailComponent implements OnInit {
   @Input() group: Group;
   @Input() todo: Todo;
   @Input() todos: FirebaseListObservable<Todo[]>
-  groupToDisplay;
+  @Input() user: User;
+  @Input() users: FirebaseListObservable<User[]>;
   constructor(private groupSvc: GroupService,
               private router: Router,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.users = this.groupSvc.getUsersList({ limitToLast: 5 })
+    console.log(this.users)
   }
   
   getGroup() {
@@ -32,14 +36,8 @@ export class GroupDetailComponent implements OnInit {
         orderByChild: 'groupKey',
         equalTo: this.group.$key,
       })
-      return this.todos
-      
-      
+      return this.todos;
     })
-  }
-  updateTimeStamp() {
-    let date = new Date().getTime()
-    this.groupSvc.updateGroup(this.group.$key, { timeStamp: date })
   }
   
   updateActive(value: boolean) {
@@ -50,5 +48,9 @@ export class GroupDetailComponent implements OnInit {
     this.groupSvc.deleteGroup(this.group.$key)
   }
 
-
+  addToUser() {
+    this.groupSvc.addToUser(this.user.$key, this.group.$key)
+    console.log(this.group.$key)
+    console.log(this.user.$key);
+  }
 }

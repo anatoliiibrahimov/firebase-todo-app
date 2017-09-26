@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { UserLoginComponent } from '../user-login/user-login.component';
 import { UserSignupComponent } from '../user-signup/user-signup.component';
 
-
 @NgModule({
   imports: [
     CommonModule,
