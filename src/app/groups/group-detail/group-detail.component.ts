@@ -16,6 +16,7 @@ export class GroupDetailComponent implements OnInit {
   @Input() group: Group;
   @Input() todo: Todo;
   @Input() todos: FirebaseListObservable<Todo[]>
+  @Input() groups: FirebaseListObservable<Group[]>
   @Input() user: User;
   @Input() users: FirebaseListObservable<User[]>;
   constructor(private groupSvc: GroupService,
@@ -39,7 +40,7 @@ export class GroupDetailComponent implements OnInit {
       return this.todos;
     })
   }
-  
+ 
   updateActive(value: boolean) {
     this.groupSvc.updateGroup(this.group.$key, { active: value })
   }

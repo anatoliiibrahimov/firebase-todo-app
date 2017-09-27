@@ -20,9 +20,10 @@ export class GroupsListComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.groups = this.groupSvc.getGroupsList({limitToLast: 5})
+    this.groups = this.groupSvc.getGroupsList({})
     this.users = this.groupSvc.getUsersList({limitToLast: 5})
     console.log(this.users)
+    
   }
 
   getGroup(group) {

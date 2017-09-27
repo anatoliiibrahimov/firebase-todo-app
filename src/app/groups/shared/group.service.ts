@@ -30,15 +30,13 @@ export class GroupService {
   ) {
   	this.firebaseAuth.authState.subscribe(user => {
       if(user) this.userId = user.uid
-      	this.groups = db.list(this.basePath);
+      	
     })
   }
 
   getGroupsList(query={}): FirebaseListObservable<Group[]> {
   	if (!this.userId) return;
-    this.groups = this.db.list(`groups/${this.userId}`, {
-      query: query
-    });
+    this.groups = this.db.list(`groups/`, {query:  {orderByChild: 'userId', equalTo: this.userId}});
     console.log(this.groups)
     return this.groups
     
@@ -46,7 +44,7 @@ export class GroupService {
 
 	getGroup(key: string): FirebaseObjectObservable<Group> {
     if (!this.userId) return;
-    this.group = this.db.object(`groups/${this.userId}/${key}`);
+    this.group = this.db.object(`groups/${key}`);
     console.log(this.group);
     return this.group
   }
@@ -69,7 +67,7 @@ export class GroupService {
 
   getTodoList(query ={}): FirebaseListObservable<Todo[]> {
     if (!this.userId) return;
-    this.todos = this.db.list('/todos/' + this.userId ,  {query: query})
+    this.todos = this.db.list('/todos/' ,  {query:  {orderByChild: 'userId', equalTo: this.userId}})
     console.log(query)
     return this.todos
   }
@@ -82,7 +80,7 @@ export class GroupService {
 
   addToUser(member_key: string, key: string) {
     const data = { [member_key]: true};
-    const members = this.db.object(`groups/${this.userId}/${key}/members`);
+    const members = this.db.object(`groups/${key}/members`);
     
     console.log(members)
     members.update(data)
@@ -97,7 +95,7 @@ export class GroupService {
   }
 
   getUser(group: Group): FirebaseObjectObservable<User>{
-    this.user = this.db.object('/users/'+ this.userId+'/'+group.$key);
+    this.user = this.db.object('/users/'+group.$key);
     console.log(this.user);
     return this.user
   }

@@ -28,7 +28,7 @@ export class TodoService {
 
   getTodosList(query={}): FirebaseListObservable<Todo[]> {
     if (!this.userId) return;
-  	this.todos = this.db.list(`todos/${this.userId}`)
+  	this.todos = this.db.list(`todos/`, {query:  {orderByChild: 'userId', equalTo: this.userId}})
   	return this.todos
 	}
 	
@@ -56,13 +56,13 @@ export class TodoService {
 
   getGroupsList(query={}): FirebaseListObservable<Group[]> {
     if (!this.userId) return;
-    this.groups = this.db.list(`groups/${this.userId}`);
+    this.groups = this.db.list(`groups/`, {query:  {orderByChild: 'userId', equalTo: this.userId}} );
     return this.groups
   }
 
   getGroup(todo: Todo): FirebaseObjectObservable<Group> {
     if (!this.userId) return;
-    this.group = this.db.object('/groups/'+ this.userId+'/'+todo.groupKey);
+    this.group = this.db.object('/groups/'+ todo.groupKey);
     console.log(this.group);
     return this.group
   }
