@@ -67,7 +67,7 @@ export class GroupService {
 
   getTodoList(query ={}): FirebaseListObservable<Todo[]> {
     if (!this.userId) return;
-    this.todos = this.db.list('/todos/' ,  {query:  {orderByChild: 'userId', equalTo: this.userId}})
+    this.todos = this.db.list('/todos/' ,  {query:  query})
     console.log(query)
     return this.todos
   }
