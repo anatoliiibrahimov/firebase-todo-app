@@ -40,7 +40,14 @@ export class GroupDetailComponent implements OnInit {
       return this.todos;
     })
   }
- 
+
+  getSharedGroups() {
+    this.groups = this.groupSvc.getSharedGroups({
+      orderByChild: 'members',
+      equalTo: this.group.members
+    })
+  }
+
   updateActive(value: boolean) {
     this.groupSvc.updateGroup(this.group.$key, { active: value })
   }
@@ -55,7 +62,7 @@ export class GroupDetailComponent implements OnInit {
     console.log(this.user)
     console.log(this.group.$key)
     console.log(this.user.$key);
-    console.log(this.group.members[this.user.$key])
+    console.log(this.group.members)
   }
 
   addToGroup() {

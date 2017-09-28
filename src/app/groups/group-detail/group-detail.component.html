@@ -4,6 +4,11 @@
           {{todo.title}}
      </div>
      <div>
+          <div *ngFor="let group of groups | async">
+            {{group.title}}
+          
+        </div>
+        <button (click) = 'getSharedGroups()'>dsf</button>
           <button class="btn btn-primary" (click)='getGroup()'>Show todos</button>
           <button class="btn btn-primary" (click)='deleteGroup()'>Delete Group</button>
      </div>

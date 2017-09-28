@@ -100,6 +100,13 @@ export class GroupService {
     return this.user
   }
 
+  getSharedGroups(query={}): FirebaseListObservable<Group[]>{
+    if (!this.userId) return;
+    this.groups = this.db.list('/groups/', {query: {  orderByChild: 'members/'+this.userId,equalsTo: true}}) 
+    console.log(query)
+    return this.groups
+  }
+
   private handleError(error) {
     console.log(error)
  	}

@@ -24,6 +24,7 @@ export class GroupsListComponent implements OnInit {
     this.users = this.groupSvc.getUsersList({limitToLast: 5})
     console.log(this.users)
     
+    
   }
 
   getGroup(group) {
