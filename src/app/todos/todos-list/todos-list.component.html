@@ -1,7 +1,7 @@
-<h1>Todos</h1>
-<div class="jumbotron">
-<div *ngFor="let todo of todos | async">
-  <todo-details [todo]='todo' [groups]='groups'></todo-details>
-</div>
-</div>
 <todo-form></todo-form>
+<div class="jumbotron">
+    <h1 class="text-center">Todos:</h1>
+    <div *ngFor="let todo of todos | async">
+      <todo-details [todo]='todo' [groups]='groups'></todo-details>
+    </div>
+</div>

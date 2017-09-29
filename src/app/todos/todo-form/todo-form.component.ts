@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TodoService } from '../shared/todo.service';
 import { Todo } from '../shared/todo';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'todo-form',
@@ -10,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class TodoFormComponent {
   todo: Todo = new Todo();
-  constructor(private todoSvc: TodoService) { }
+  constructor(private todoSvc: TodoService, public authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -18,6 +19,10 @@ export class TodoFormComponent {
   createTodo() {
     this.todoSvc.createTodo(this.todo)
     this.todo = new Todo()
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }

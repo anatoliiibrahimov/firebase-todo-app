@@ -1,8 +1,12 @@
-<div *ngFor="let group of groups | async" 
+<group-form></group-form>
+<div class="jumbotron" *ngFor="let group of groups | async" 
 [class.selected]="group === selectedGroup"
 (click)='getGroup(group)'>
-{{group.title}}
+<h1 class="text-center">Groups:</h1>
+<h3>{{group.title}}(click to get details)</h3>
+</div>
+<div class="jumbotron">
+<group-detail [group]="selectedGroup"></group-detail>
 </div>
 
-<group-detail [group]="selectedGroup"></group-detail>
-<group-form></group-form>
+

@@ -23,8 +23,6 @@ export class GroupsListComponent implements OnInit {
     this.groups = this.groupSvc.getGroupsList({})
     this.users = this.groupSvc.getUsersList({limitToLast: 5})
     console.log(this.users)
-    
-    
   }
 
   getGroup(group) {

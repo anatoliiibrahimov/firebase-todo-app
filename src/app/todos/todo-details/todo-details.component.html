@@ -2,16 +2,19 @@
   {{ todo.title }}
 </h3>
 
-<div class>
-  Todo is Active?: {{ todo.active }}<br>
+<div>
+  Todo is Active: {{ todo.active }}<br>
 </div>
 
-<div class>
+<div>
   <span *ngIf='todo.active' (click)='updateActive(false)'>Mark As Complete</span>
   <span *ngIf='!todo.active' (click)='updateActive(true)'>Mark As Incomplete</span>
-  <button class="btn btn-danger" (click)='deleteTodo()'>Delete</button>
-
+  
+  <h3>Add to group:</h3>
   <select [(ngModel)]="group" required (ngModelChange)="addToGroup()">
-  	<option *ngFor="let group of groups | async" [ngValue]="group" >Add to a group: {{group.title}}</option>
-	</select>
+  	<option *ngFor="let group of groups | async" [ngValue]="group" >{{group.title}}</option>
+  </select>
+</div>
+<div> 
+  <button class="btn btn-danger" (click)='deleteTodo()'>Delete Todo</button>
 </div>

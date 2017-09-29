@@ -1,8 +1,6 @@
-<h3>New Todo Form</h3>
-
-    <label class="label">Name: </label>
-
-    <input placeholder="Todo Title" class="input"
+<a (click)="logout()">Logout</a>
+<h3>Create Todo</h3>
+    <input placeholder="Todo Title" class="form-control"
     [(ngModel)]="todo.title"
     required minlength="2" maxlength="23"
     #title='ngModel' autofocus>
