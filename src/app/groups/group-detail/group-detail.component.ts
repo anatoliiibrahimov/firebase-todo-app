@@ -57,16 +57,16 @@ export class GroupDetailComponent implements OnInit {
   }
 
   addToUser() {
-    this.groupSvc.addToUser(this.user.$key, this.group.$key)
+    this.groupSvc.addToUser(this.user.userId, this.group.$key)
     console.log(this.group.members)
     console.log(this.user)
     console.log(this.group.$key)
-    console.log(this.user.$key);
+    console.log(this.user.userId);
     console.log(this.group.members)
   }
 
   addToGroup() {
-    this.groupSvc.addToGroup(this.group.$key, this.user.$key)
+    this.groupSvc.addToGroup(this.group.$key, this.user.userId)
     console.log(this.group)
     console.log(this.group.members)
     console.log(this.user)

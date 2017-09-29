@@ -29,20 +29,24 @@ export class AuthService {
     return this.authenticated ? this.firebaseAuth.authState : null;
   }
 
-  signup(email: string, password: string) {
+  signup(email: string, password:string) {
     this.firebaseAuth
       .auth
       .createUserWithEmailAndPassword(email, password)
       .then((user) => {
-        this.db.list('users').push({email})
-        
+        return this.db.object(`/users/${user.uid}`).update({
+          userId: user.uid,
+          email: user.email
+      })
+      .then((user) => {
         this.router.navigate(['/todos']);
       })
+    })
       .catch(err => {
         console.log('Something went wrong:',err.message);
       });    
   }
-
+  
   login(email: string, password: string) {
     this.firebaseAuth
       .auth
