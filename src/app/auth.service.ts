@@ -35,11 +35,6 @@ export class AuthService {
     return this.authenticated ? this.authState.uid : '';
   }
 
-  get currentUserDisplayName(): string {
-    if (!this.authState) { return 'Guest' }
-    else { return this.authState['displayName'] || 'User without a Name' }
-  }
-
   signup(email: string, password:string) {
     this.firebaseAuth
       .auth
