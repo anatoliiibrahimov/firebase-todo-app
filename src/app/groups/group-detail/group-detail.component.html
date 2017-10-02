@@ -1,6 +1,6 @@
 <div *ngIf="group ">
   <div class="jumbotron">
-    <div><button class="btn btn-primary" (click) = 'getSharedGroups()'>Show all shared groups</button></div>
+    <div><button class="btn btn-primary" (click) = 'getSharedGroups()'>Show all shared groups to this user</button></div>
     <div *ngFor="let group of groups | async">
         {{group.title}}
       </div>
@@ -15,6 +15,6 @@
      </div>
      <h3>Share to user:</h3>
      <select [(ngModel)]="user" required (ngModelChange)="addToUser(); addToGroup()">
-        <option *ngFor="let user of users | async" [ngValue]="user" >{{user.email}}</option>
+        <option *ngFor="let user of users | async" [ngValue]="user" >{{user.email}} {{user.name}}</option>
      </select>
 </div>

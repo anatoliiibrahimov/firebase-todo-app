@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'user-login',
@@ -10,19 +11,27 @@ export class UserLoginComponent {
   email: string;
   password: string;
 
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService,
+              private router: Router) {}
+
+  private afterSignIn(): void {
+    // Do after login stuff here, such router redirects, toast messages, etc.
+    this.router.navigate(['/todos']);
+  }
 
   login() {
     this.authService.login(this.email, this.password);
-    this.email = this.password = '';    
+    this.email = this.password = '';  
   }
 
-  googleLogin() {
-    this.authService.googleLogin();
+  googleLogin(): void {
+    this.authService.googleLogin()
+      .then(() => this.afterSignIn());
   }
 
-  facebookLogin() {
-    this.authService.facebookLogin();
+  facebookLogin(): void {
+    this.authService.facebookLogin()
+    .then(() => this.afterSignIn());
   }
 
   logout() {

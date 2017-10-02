@@ -31,7 +31,7 @@
 
         <div>
           <a class="btn btn-success" (click)="facebookLogin()" *ngIf="!(user | async)?.uid">Login with Facebook</a>
-          <a class="btn btn-success" (click)="facebookLogin()" *ngIf="!(user | async)?.uid">Login with Google</a>
+          <a class="btn btn-success" (click)="googleLogin()" *ngIf="!(user | async)?.uid">Login with Google</a>
           <button (click)="logout()" *ngIf="(user | async)?.uid">Logout</button>
         </div>
       </div>
