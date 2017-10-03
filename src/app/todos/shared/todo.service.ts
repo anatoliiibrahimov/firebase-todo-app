@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FirebaseListObservable, FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 
 import { AuthService } from '../../auth.service'
 import { Todo } from './todo';
