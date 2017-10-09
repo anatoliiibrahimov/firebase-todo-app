@@ -30,7 +30,7 @@ export class AuthService {
   get currentUserObservable(): any {
     return this.firebaseAuth.authState
   }
-
+  
   get currentUserId(): string {
     return this.authenticated ? this.authState.uid : '';
   }
